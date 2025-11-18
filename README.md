@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# ChaoGPT 🎭
+
+> Your chronically online AI bestie that's giving helpful but chaotic
+
+## Features
+- ✨ Neo-brutalist UI that slaps
+- 🎨 Y2K aesthetic meets modern web
+- 💬 Unhinged personality with actual knowledge
+- 🚀 Built with Next.js 14+ and TypeScript
+- 🎮 Vibe-based responses
+- 📱 Mobile responsive (because we're not animals)
+
+## Tech Stack
+- Next.js 14
+- TypeScript  
+- Tailwind CSS
+- Framer Motion
+- Zustand
+- Axios
 
 ## Getting Started
 
-First, run the development server:
-
-```bash
+\\\ash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\\\
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## API Configuration
+Using third-party OpenAI API from v98store.com
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Personality Modes
+- 🔥 Chaotic (default)
+- 🌙 Soft Hours
+- 😈 Unhinged
+- 📚 Study Buddy
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
+\\\
+chaogpt/
+├── src/
+│   ├── app/          # Next.js app directory
+│   ├── components/   # React components
+│   ├── store/        # Zustand store
+│   ├── lib/          # Utilities
+│   ├── config/       # Configuration
+│   ├── types/        # TypeScript types
+│   └── styles/       # Global styles
+└── public/           # Static assets
+\\\
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+*no cap this is the best AI assistant fr fr*
