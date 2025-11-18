@@ -1,26 +1,387 @@
 @import "tailwindcss";
 
+/* ============================================
+   CHAOGPT DESIGN SYSTEM - GLOBAL CHAOS STYLES
+   ============================================ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Color System - The Unhinged Palette */
+  --electric-lime: #BFFF00;
+  --hot-magenta: #FF006E;
+  --cyber-purple: #8B39FF;
+  --deep-black: #0A0A0A;
+  --off-white: #F7F7F7;
+  --blazing-orange: #FF4500;
+
+  /* Theme-based variables */
+  --bg-primary: var(--deep-black);
+  --text-primary: var(--off-white);
+  --accent-primary: var(--electric-lime);
+  --accent-secondary: var(--hot-magenta);
+  --accent-tertiary: var(--cyber-purple);
+
+  /* Typography - Using system font stacks for maximum compatibility */
+  --font-header: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* Shadows */
+  --shadow-neon: 0 0 20px rgba(191, 255, 0, 0.5), 0 0 40px rgba(191, 255, 0, 0.2);
+  --shadow-magenta: 0 0 20px rgba(255, 0, 110, 0.5), 0 0 40px rgba(255, 0, 110, 0.2);
+  --shadow-purple: 0 0 20px rgba(139, 57, 255, 0.5), 0 0 40px rgba(139, 57, 255, 0.2);
+  --shadow-brutalist: 4px 4px 0 rgba(191, 255, 0, 1);
+
+  /* Chaos Level (can be adjusted via UI) */
+  --chaos-intensity: 1;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-header);
+  --font-mono: var(--font-body);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Touch Grass Theme */
+[data-theme="touch-grass"] {
+  --bg-primary: #F7F7F7;
+  --text-primary: #0A0A0A;
+  --accent-primary: var(--cyber-purple);
+}
+
+/* Delulu Theme */
+[data-theme="delulu"] {
+  --bg-primary: #000000;
+  --text-primary: #FFFFFF;
+  --accent-primary: var(--hot-magenta);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--font-body), monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), monospace;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Noise texture overlay for that grungy aesthetic */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='4.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ============================================
+   KEYFRAME ANIMATIONS
+   ============================================ */
+
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    box-shadow: var(--shadow-neon);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(191, 255, 0, 0.7), 0 0 60px rgba(191, 255, 0, 0.3);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes vibrate {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(-1px, 1px) rotate(-0.5deg); }
+  50% { transform: translate(1px, -1px) rotate(0.5deg); }
+  75% { transform: translate(-1px, -1px) rotate(-0.5deg); }
+}
+
+@keyframes slideInRandom {
+  0% {
+    opacity: 0;
+    transform: translate(var(--slide-x, 20px), var(--slide-y, -20px)) rotate(var(--slide-rotate, 2deg));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0);
+  }
+}
+
+@keyframes morphEmoji {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  33% { transform: scale(1.2) rotate(5deg); }
+  66% { transform: scale(0.9) rotate(-5deg); }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes orb-float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.9);
+  }
+}
+
+@keyframes squish {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+.text-gradient-neon {
+  background: linear-gradient(135deg, var(--electric-lime), var(--hot-magenta));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.neon-border {
+  border: 2px solid var(--electric-lime);
+  box-shadow: var(--shadow-neon);
+}
+
+.magenta-border {
+  border: 2px solid var(--hot-magenta);
+  box-shadow: var(--shadow-magenta);
+}
+
+.brutalist-shadow {
+  box-shadow: var(--shadow-brutalist);
+}
+
+.btn-squish {
+  transition: transform 0.1s ease;
+}
+
+.btn-squish:active {
+  transform: scale(0.95);
+}
+
+.glitch-effect {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+.vibrating {
+  animation: vibrate 0.3s ease-in-out infinite;
+}
+
+/* Scrollbar styling - make it ~aesthetic~ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--deep-black);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--electric-lime);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hot-magenta);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--electric-lime);
+  color: var(--deep-black);
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-header), sans-serif;
+  font-weight: 700;
+}
+
+.lowercase-text {
+  text-transform: lowercase;
+}
+
+/* ============================================
+   SPECIAL EFFECTS
+   ============================================ */
+
+/* Scanline effect (appears occasionally) */
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(transparent, var(--electric-lime), transparent);
+  opacity: 0.1;
+  z-index: 9999;
+  pointer-events: none;
+  animation: scanline 8s linear infinite;
+}
+
+/* Gradient mesh background */
+.gradient-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(at 40% 20%, rgba(139, 57, 255, 0.15) 0px, transparent 50%),
+              radial-gradient(at 80% 0%, rgba(255, 0, 110, 0.1) 0px, transparent 50%),
+              radial-gradient(at 0% 50%, rgba(191, 255, 0, 0.1) 0px, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Floating orb */
+.chaos-orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.05;
+  pointer-events: none;
+  animation: orb-float 20s ease-in-out infinite;
+}
+
+/* ============================================
+   RESPONSIVE UTILITIES
+   ============================================ */
+
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}
+
+/* ============================================
+   LOADING STATES
+   ============================================ */
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(191, 255, 0, 0.1) 25%, rgba(255, 0, 110, 0.1) 50%, rgba(191, 255, 0, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: gradientShift 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   EASTER EGGS
+   ============================================ */
+
+.comic-sans {
+  font-family: 'Comic Sans MS', cursive !important;
+}
+
+.maximum-overdrive {
+  --chaos-intensity: 3 !important;
+}
+
+.maximum-overdrive * {
+  animation-duration: calc(var(--animation-duration, 1s) / 3) !important;
 }
