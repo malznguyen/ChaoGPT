@@ -2,8 +2,8 @@
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'ChaoGPT - Your Unhinged AI Bestie',
-  description: 'Its giving AI assistant but make it chronically online',
+  title: 'chaogpt - your unhinged ai bestie',
+  description: 'its giving ai assistant but make it chronically online',
 }
 
 export default function RootLayout({
