@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import { VibeMode, VibeAnalysis } from '@/lib/types';
-import { getConversation, updateConversationVibe, calculateVibeScore } from '@/lib/conversation';
+import { getConversation, updateConversationVibe } from '@/lib/conversation';
+import { calculateVibeScore } from '@/lib/personality';
 import { createErrorResponse, logError } from '@/lib/errors';
 
 export const runtime = 'edge';
